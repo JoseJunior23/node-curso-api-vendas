@@ -4,12 +4,14 @@ import cors from 'cors';
 import express, { NextFunction, Request, Response } from 'express';
 import '@shared/typeorm/connection';
 import { routes } from './routes';
+import { errors } from 'celebrate';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(routes);
+app.use(errors());
 
 app.use(
   (error: Error, request: Request, response: Response, next: NextFunction) => {
