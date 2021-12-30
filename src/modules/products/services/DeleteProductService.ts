@@ -7,7 +7,7 @@ interface IProduct {
 }
 
 export default class DeleteProductService {
-  public async delete({ id }: IProduct): Promise<void> {
+  public async execute({ id }: IProduct): Promise<void> {
     const productRepository = getCustomRepository(ProductsRepository);
 
     const product = await productRepository.findOne(id);

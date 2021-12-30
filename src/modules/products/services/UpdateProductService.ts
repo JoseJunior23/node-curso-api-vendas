@@ -10,7 +10,7 @@ interface IProduct {
   quantity: number;
 }
 export default class UpdateProductService {
-  public async update({
+  public async execute({
     id,
     name,
     price,
