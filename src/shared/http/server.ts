@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import 'dotenv/config';
 import AppError from '@shared/errors/AppError';
 import cors from 'cors';
 import express, { NextFunction, Request, Response } from 'express';
