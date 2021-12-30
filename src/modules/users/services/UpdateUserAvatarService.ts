@@ -8,10 +8,10 @@ import fs from 'fs';
 
 interface IUser {
   user_id: string;
-  avatarFileName: string;
+  avatarFilename: string;
 }
 export default class UpdateUserAvatarService {
-  public async execute({ user_id, avatarFileName }: IUser): Promise<User> {
+  public async execute({ user_id, avatarFilename }: IUser): Promise<User> {
     const usersRepository = getCustomRepository(UsersRepository);
 
     const user = await usersRepository.findById(user_id);
@@ -30,8 +30,8 @@ export default class UpdateUserAvatarService {
       }
     }
 
-    //cadastrando novo avatar
-    user.avatar = avatarFileName;
+    //cadastrando novo
+    user.avatar = avatarFilename;
     await usersRepository.save(user);
     return user;
   }
