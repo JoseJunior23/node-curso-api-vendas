@@ -8,6 +8,7 @@ interface IProduct {
   price: number;
   quantity: number;
 }
+
 export default class CreateProductService {
   public async execute({ name, price, quantity }: IProduct): Promise<Product> {
     const productsRepository = getCustomRepository(ProductsRepository);
