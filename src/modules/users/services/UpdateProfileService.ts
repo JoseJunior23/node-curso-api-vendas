@@ -32,7 +32,7 @@ export default class UpdateProfileService {
       throw new AppError('There is already one user with this email');
     }
 
-    if (password && old_password) {
+    if (password && !old_password) {
       throw new AppError('Old password is required');
     }
 
