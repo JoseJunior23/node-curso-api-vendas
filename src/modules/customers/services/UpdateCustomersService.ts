@@ -11,7 +11,8 @@ interface ICustomer {
 export default class UpdateCustomersService {
   public async execute({ id, name, email }: ICustomer): Promise<Customer> {
     const customerRepository = getCustomRepository(CustomersRepository);
-    const customer = await customerRepository.findByName(id);
+
+    const customer = await customerRepository.findById(id);
     if (!customer) {
       throw new AppError('Customer not found');
     }

@@ -12,21 +12,21 @@ export default class ProductController {
     return response.status(200).json(products);
   }
 
-  public async show(request: Request, response: Response) {
+  public async show(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
     const showProduct = new ShowProductService();
     const product = await showProduct.execute({ id });
     return response.status(200).json(product);
   }
 
-  public async create(request: Request, response: Response) {
+  public async create(request: Request, response: Response): Promise<Response> {
     const { name, price, quantity } = request.body;
     const createProduct = new CreateProductService();
     const product = await createProduct.execute({ name, price, quantity });
     return response.status(201).json(product);
   }
 
-  public async update(request: Request, response: Response) {
+  public async update(request: Request, response: Response): Promise<Response> {
     const { name, price, quantity } = request.body;
     const { id } = request.params;
     const updateProduct = new UpdateProductService();
@@ -34,7 +34,7 @@ export default class ProductController {
     return response.status(200).json(product);
   }
 
-  public async delete(request: Request, response: Response) {
+  public async delete(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
     const deleteProduct = new DeleteProductService();
     await deleteProduct.execute({ id });

@@ -7,13 +7,9 @@ interface ICustomer {
   name: string;
   email: string;
 }
-export default class CreateCustomersServices {
+export default class CreateCustomersService {
   public async execute({ name, email }: ICustomer): Promise<Customer> {
     const customerRepository = getCustomRepository(CustomersRepository);
-    const nameExists = await customerRepository.findByName(name);
-    if (nameExists) {
-      throw new AppError('There is already one customer with this name 😩');
-    }
 
     const emailExists = await customerRepository.findByEmail(email);
     if (emailExists) {

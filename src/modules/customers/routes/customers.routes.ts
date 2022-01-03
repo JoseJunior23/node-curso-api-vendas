@@ -1,9 +1,11 @@
+import isAuthenticated from '@shared/http/middlewares/isAuthenticated';
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 import CustomerController from '../controllers/CustomersController';
 
 export const customersRouter = Router();
 const customersController = new CustomerController();
+customersRouter.use(isAuthenticated);
 
 customersRouter.get('/', customersController.index);
 
