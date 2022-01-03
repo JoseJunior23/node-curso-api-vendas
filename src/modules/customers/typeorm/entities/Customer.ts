@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 
 @Entity('customers')
-export default class Customers {
+export default class Customer {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
