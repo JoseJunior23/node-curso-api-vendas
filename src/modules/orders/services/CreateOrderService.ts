@@ -35,18 +35,18 @@ export default class CreateOrderService {
     const checkInexistentProducts = products.filter(
       product => !productsExistsIds.includes(product.id),
     );
-    if (!checkInexistentProducts.length) {
+    if (checkInexistentProducts.length) {
       throw new AppError(`Could not find product ${checkInexistentProducts}`);
     }
 
-    const quantityAvalible = products.filter(
+    const quantityAvailable = products.filter(
       product =>
         productsExists.filter(p => p.id === product.id)[0].quantity <
         product.quantity,
     );
-    if (!quantityAvalible.length) {
+    if (quantityAvailable.length) {
       throw new AppError(
-        `The quantity ${quantityAvalible[0].quantity} is not available for ${quantityAvalible[0].id}`,
+        `The quantity ${quantityAvailable[0].quantity} is not available for ${quantityAvailable[0].id}`,
       );
     }
 
@@ -65,7 +65,7 @@ export default class CreateOrderService {
     const updatedProductQuantity = order_products.map(product => ({
       id: product.product_id,
       quantity:
-        productsExists.filter(p => p.id === product.id)[0].quantity -
+        productsExists.filter(p => p.id === product.product_id)[0].quantity -
         product.quantity,
     }));
 
