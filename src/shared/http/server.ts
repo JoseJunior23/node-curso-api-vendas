@@ -9,11 +9,13 @@ import { routes } from './routes';
 import { errors } from 'celebrate';
 import UploadConfig from '@config/upload';
 import { pagination } from 'typeorm-pagination';
+import rateLimiter from './middlewares/rateLimiter';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(rateLimiter);
 app.use(pagination);
 app.use('/files', express.static(UploadConfig.directory));
 app.use(routes);

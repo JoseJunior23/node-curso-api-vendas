@@ -8,10 +8,14 @@ export default class ListProductService {
     const productsRepository = getCustomRepository(ProductsRepository);
 
     const redisCache = new RedisCache();
+    let products = await redisCache.recover<Product[]>(
+      'api-vendas-PRODUCT_LIST',
+    );
+    if (!products) {
+      products = await productsRepository.find();
 
-    const products = productsRepository.find();
-
-    await redisCache.save('teste', 'teste');
+      await redisCache.save('api-vendas-PRODUCT_LIST', products);
+    }
 
     return products;
   }
